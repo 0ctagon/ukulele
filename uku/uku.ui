@@ -123,13 +123,13 @@
      <rect>
       <x>60</x>
       <y>10</y>
-      <width>21</width>
+      <width>51</width>
       <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -323,9 +323,9 @@
    <widget class="QLineEdit" name="saveChordsName">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>170</x>
       <y>10</y>
-      <width>21</width>
+      <width>41</width>
       <height>20</height>
      </rect>
     </property>
@@ -2236,6 +2236,19 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QPushButton" name="resetButton">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>10</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Reset</string>
+    </property>
+   </widget>
    <zorder>dial</zorder>
    <zorder>c01</zorder>
    <zorder>c02</zorder>
@@ -2405,6 +2418,7 @@
    <zorder>label_6</zorder>
    <zorder>label_7</zorder>
    <zorder>line</zorder>
+   <zorder>resetButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

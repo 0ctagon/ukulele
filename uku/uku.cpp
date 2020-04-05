@@ -31,6 +31,9 @@ uku::uku(QWidget *parent) :
     connect(barsController,SIGNAL(chordsFound()), this, SLOT(displayChords()));
     connect(barsController,SIGNAL(chordsNotFound()), this, SLOT(eraseChords()));
 
+    connect(ui->resetButton,SIGNAL(clicked()), this, SLOT(clearAll()));
+    connect(this,SIGNAL(unCheck()), barsController, SLOT(unCheck()));
+
     connect(ui->SaveButton, SIGNAL(clicked()), this, SLOT(saveChords()));
     connect(this, SIGNAL(saveChordsSignal(std::string)), barsController, SLOT(saveBars(std::string)));
 
@@ -51,7 +54,7 @@ void uku::saveChords()
 {
     std::string name = ui->saveChordsName->text().toStdString();
     emit saveChordsSignal(name);
-    ui->saveChordsName->setText("");
+//    ui->saveChordsName->setText("");
     ui->chordsLabel->setText(QString::fromStdString(name));
 }
 
@@ -73,4 +76,13 @@ void uku::displayStrings()
     ui->strA->setText(strings->getNotes(3));
 }
 
+void uku::clearAll()
+{
+    ui->strG->setText("G");
+    ui->strC->setText("C");
+    ui->strE->setText("E");
+    ui->strA->setText("A");
+    ui->chordsLabel->setText("");
+    emit unCheck();
+}
 

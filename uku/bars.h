@@ -21,6 +21,8 @@ public:
 
     int getBarValue();
 
+    void unCheck();
+
 public slots:
     void emitBarChanged();
 

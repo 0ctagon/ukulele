@@ -40,3 +40,9 @@ void Cases::switchState()
     else { label->setText("");}
     emit stateChanged();
 }
+
+void Cases::unCheck()
+{
+    cb->setChecked(false);
+    state = false;
+}

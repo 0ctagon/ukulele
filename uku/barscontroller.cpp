@@ -29,23 +29,10 @@ BarsController::BarsController(Bars *b0, Bars *b1, Bars *b2, Bars *b3, Bars *b4,
     barsVect->append(b15);
     barsVect->append(b16);
 
-    connect(b0,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b1,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b2,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b3,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b4,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b5,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b6,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b7,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b8,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b9,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b10,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b11,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b12,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b13,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b14,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b15,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b16,SIGNAL(barChanged()), this, SLOT(checkBars()));
+    for(int i=0; i<barsVect->length(); i++)
+    {
+        connect((*barsVect)[i],SIGNAL(barChanged()), this, SLOT(checkBars()));
+    }
 }
 
 void BarsController::setBarsController(Bars *b0, Bars *b1, Bars *b2, Bars *b3, Bars *b4, Bars *b5, Bars *b6, Bars *b7, Bars *b8, Bars *b9, Bars *b10, Bars *b11, Bars *b12, Bars *b13, Bars *b14, Bars *b15, Bars *b16)
@@ -70,23 +57,10 @@ void BarsController::setBarsController(Bars *b0, Bars *b1, Bars *b2, Bars *b3, B
     barsVect->append(b15);
     barsVect->append(b16);
 
-    connect(b0,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b1,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b2,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b3,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b4,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b5,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b6,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b7,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b8,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b9,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b10,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b11,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b12,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b13,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b14,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b15,SIGNAL(barChanged()), this, SLOT(checkBars()));
-    connect(b16,SIGNAL(barChanged()), this, SLOT(checkBars()));
+    for(int i=0; i<barsVect->length(); i++)
+    {
+        connect((*barsVect)[i],SIGNAL(barChanged()), this, SLOT(checkBars()));
+    }
 }
 
 
@@ -127,6 +101,16 @@ void BarsController::checkChords()
     else
     {
         emit chordsNotFound();
+    }
+}
+
+void BarsController::unCheck()
+{
+    for(int i=0; i<barsVect->length(); i++)
+    {
+        disconnect((*barsVect)[i],SIGNAL(barChanged()), this, SLOT(checkBars()));
+        (*barsVect)[i]->unCheck();
+        connect((*barsVect)[i],SIGNAL(barChanged()), this, SLOT(checkBars()));
     }
 }
 

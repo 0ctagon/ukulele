@@ -30,6 +30,8 @@ public slots:
     void checkBars();
     void checkChords();
 
+    void unCheck();
+
     void saveBars(std::string name);
 
 signals:

@@ -47,8 +47,11 @@ public slots:
     void eraseChords();
     void displayStrings();
 
+    void clearAll();
+
 signals:
     void saveChordsSignal(std::string);
+    void unCheck();
 };
 
 #endif // UKU_H

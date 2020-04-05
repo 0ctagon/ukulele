@@ -51,6 +51,14 @@ int Bars::getBarValue()
     return (*barCase)[0]->getState() | ((*barCase)[1]->getState() << 1) | ((*barCase)[2]->getState() << 2) | ((*barCase)[3]->getState() << 3);
 }
 
+void Bars::unCheck()
+{
+    for(int i=0; i<barCase->length(); i++)
+    {
+        (*barCase)[i]->unCheck();
+    }
+}
+
 void Bars::emitBarChanged()
 {
     emit barChanged();
