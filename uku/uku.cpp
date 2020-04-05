@@ -60,7 +60,14 @@ void uku::saveChords()
 
 void uku::displayChords()
 {
-    ui->chordsLabel->setText(QString::fromStdString(barsController->getChords()));
+    QVector<std::string>* chordsName = barsController->getChords();
+    std::string fullName = (*chordsName)[0];
+    for(int i=1; i<chordsName->size(); i++)
+    {
+        fullName += "  ||  ";
+        fullName += (*chordsName)[i];
+    }
+    ui->chordsLabel->setText(QString::fromStdString(fullName));
 }
 
 void uku::eraseChords()

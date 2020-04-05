@@ -4,20 +4,24 @@
 
 Chords::Chords()
 {
-    databaseName = "chords.txt";
-    chordsName = "";
+    databaseName = "../chords.txt";
+    chordsName->clear();
+    chordsName->append("");
 }
 
 Chords::Chords(std::string data)
 {
     databaseName = data;
-    chordsName = "";
+    chordsName->clear();
+    chordsName->append("");
 }
 
 bool Chords::findChords(QVector<int>* barStatus)
 {
     database.open(databaseName, std::ios::in);
+    chordsName->clear();
     std::string line;
+    bool found = false;
     if(database.is_open())
     {
         while(std::getline(database,line))
@@ -26,10 +30,11 @@ bool Chords::findChords(QVector<int>* barStatus)
             std::stringstream ss(line);
             std::string substr;
             int value = -999;
+            std::string chordName;
             while(ss.good())
             {
                 std::getline(ss, substr, ',');
-                if(value == -999){chordsName = substr;}
+                if(value == -999){chordName = substr;}
                 std::stringstream strint(substr);
                 strint>>value;
                 barChords.append(value);
@@ -37,14 +42,17 @@ bool Chords::findChords(QVector<int>* barStatus)
             barChords.removeFirst();
             if(barChords==(*barStatus))
             {
-                database.close();
-                return true;
+                chordsName->append(chordName);
+                found = true;
             }
         }
     }
-    chordsName = "";
+    if(found==false)
+    {
+        chordsName->append("");
+    }
     database.close();
-    return false;
+    return found;
 }
 
 void Chords::saveChords(std::string name, QVector<int> *barStatus)
@@ -60,7 +68,7 @@ void Chords::saveChords(std::string name, QVector<int> *barStatus)
     database.close();
 }
 
-std::string Chords::getChords()
+QVector<std::string>* Chords::getChords()
 {
     return chordsName;
 }

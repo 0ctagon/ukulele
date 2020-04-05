@@ -10,7 +10,7 @@ class Chords
 {
 protected:
     std::string databaseName;
-    std::string chordsName;
+    QVector<std::string>* chordsName = new QVector<std::string>;
     std::fstream database;
 
 public:
@@ -19,7 +19,7 @@ public:
 
     bool findChords(QVector<int> *barStatus);
     void saveChords(std::string name, QVector<int> *barStatus);
-    std::string getChords();
+    QVector<std::string>* getChords();
 };
 
 #endif // CHORDS_H

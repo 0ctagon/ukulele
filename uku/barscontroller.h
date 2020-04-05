@@ -23,7 +23,7 @@ public:
     Bars* getBar(int i);
 
     int getLength();
-    std::string getChords();
+    QVector<std::string>* getChords();
 
 
 public slots:

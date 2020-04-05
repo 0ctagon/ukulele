@@ -75,7 +75,7 @@ int BarsController::getLength()
     return barsVect->length();
 }
 
-std::string BarsController::getChords()
+QVector<std::string>* BarsController::getChords()
 {
     return data.getChords();
 }

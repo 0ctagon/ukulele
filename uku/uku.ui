@@ -123,15 +123,15 @@
      <rect>
       <x>60</x>
       <y>10</y>
-      <width>51</width>
+      <width>241</width>
       <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>9</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="text">
@@ -142,7 +142,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>13</y>
       <width>41</width>
       <height>16</height>
      </rect>
@@ -310,7 +310,7 @@
    <widget class="QPushButton" name="SaveButton">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>319</x>
       <y>10</y>
       <width>51</width>
       <height>21</height>
@@ -323,10 +323,10 @@
    <widget class="QLineEdit" name="saveChordsName">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>10</y>
-      <width>41</width>
-      <height>20</height>
+      <x>370</x>
+      <y>11</y>
+      <width>51</width>
+      <height>19</height>
      </rect>
     </property>
    </widget>
