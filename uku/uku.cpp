@@ -41,6 +41,8 @@ uku::uku(QWidget *parent) :
 
     connect(barsController,SIGNAL(barChanged()), strings, SLOT(setNotes()));
     connect(strings,SIGNAL(notesSet()), this, SLOT(displayStrings()));
+
+    connect(ui->selectChord,SIGNAL(valueChanged(int)), this, SLOT(setBarsValue(int)));
 }
 
 
@@ -50,17 +52,25 @@ uku::~uku()
     delete ui;
 }
 
+void uku::resetSetChords()
+{
+    ui->numberFound->setText("");
+    disconnect(ui->selectChord,SIGNAL(valueChanged(int)), this, SLOT(setBarsValue(int)));
+    ui->selectChord->setMinimum(-1);
+    ui->selectChord->setValue(-1);
+    connect(ui->selectChord,SIGNAL(valueChanged(int)), this, SLOT(setBarsValue(int)));
+}
+
 void uku::saveChords()
 {
-    std::string name = ui->saveChordsName->text().toStdString();
+    std::string name = ui->chordsLabel->text().toStdString();
     emit saveChordsSignal(name);
-//    ui->saveChordsName->setText("");
     ui->chordsLabel->setText(QString::fromStdString(name));
 }
 
 void uku::displayChords()
 {
-    QVector<std::string>* chordsName = barsController->getChords();
+    QVector<std::string>* chordsName = barsController->getChordsName();
     std::string fullName = (*chordsName)[0];
     for(int i=1; i<chordsName->size(); i++)
     {
@@ -68,11 +78,13 @@ void uku::displayChords()
         fullName += (*chordsName)[i];
     }
     ui->chordsLabel->setText(QString::fromStdString(fullName));
+    resetSetChords();
 }
 
 void uku::eraseChords()
 {
     ui->chordsLabel->setText("");
+    resetSetChords();
 }
 
 void uku::displayStrings()
@@ -83,6 +95,26 @@ void uku::displayStrings()
     ui->strA->setText(strings->getNotes(3));
 }
 
+void uku::setBarsValue(int chordNumber)
+{
+    ui->selectChord->setMinimum(0);
+    std::string chordName = ui->chordsLabel->text().toStdString();
+    if(chordName=="")
+    {
+        ui->selectChord->setMaximum(0);
+        ui->numberFound->setText("0 chord found");
+        return;
+    }
+    barsController->setBarsValue(chordName, chordNumber);
+    int maxValue = barsController->getChordsListSize()-1;
+    if(chordNumber>=maxValue)
+    {
+        ui->selectChord->setValue(maxValue);
+    }
+    ui->selectChord->setMaximum(maxValue);
+    ui->numberFound->setText(QString::number(maxValue)+" chords found");
+}
+
 void uku::clearAll()
 {
     ui->strG->setText("G");
@@ -90,6 +122,7 @@ void uku::clearAll()
     ui->strE->setText("E");
     ui->strA->setText("A");
     ui->chordsLabel->setText("");
+    resetSetChords();
     emit unCheck();
 }
 

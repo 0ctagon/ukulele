@@ -18,6 +18,7 @@ public:
     void setBars(Cases* c0, Cases* c1, Cases* c2, Cases* c3);
 
     Cases* getCase(int i);
+    void setBarValue(int barValue);
 
     int getBarValue();
 

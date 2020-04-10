@@ -28,6 +28,7 @@ public:
 public slots:
     void switchState();
     void unCheck();
+    void Check();
 
 signals:
     void stateChanged();

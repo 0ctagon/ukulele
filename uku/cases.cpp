@@ -46,3 +46,9 @@ void Cases::unCheck()
     cb->setChecked(false);
     state = false;
 }
+
+void Cases::Check()
+{
+    cb->setChecked(true);
+    state = true;
+}

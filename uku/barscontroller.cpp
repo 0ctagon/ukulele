@@ -63,21 +63,24 @@ void BarsController::setBarsController(Bars *b0, Bars *b1, Bars *b2, Bars *b3, B
     }
 }
 
-
 Bars *BarsController::getBar(int i)
 {
     return (*barsVect)[i];
 }
-
 
 int BarsController::getLength()
 {
     return barsVect->length();
 }
 
-QVector<std::string>* BarsController::getChords()
+QVector<std::string>* BarsController::getChordsName()
 {
-    return data.getChords();
+    return data.getChordsName();
+}
+
+int BarsController::getChordsListSize()
+{
+    return data.getChordsListSize();
 }
 
 void BarsController::checkBars()
@@ -117,4 +120,22 @@ void BarsController::unCheck()
 void BarsController::saveBars(std::string name)
 {
     data.saveChords(name, barsStatus);
+}
+
+void BarsController::setBarsValue(std::string name, int chordNumber)
+{
+
+    QVector<QVector<int>>* barValues = data.getChords(name);
+    if(chordNumber>=barValues->size())
+    {
+        chordNumber=barValues->size()-1;
+    }
+    QVector<int> barValue = (*barValues)[chordNumber];
+
+    for(int i=0; i<barsVect->length(); i++)
+    {
+        disconnect((*barsVect)[i],SIGNAL(barChanged()), this, SLOT(checkBars()));
+        (*barsVect)[i]->setBarValue(barValue[i]);
+        connect((*barsVect)[i],SIGNAL(barChanged()), this, SLOT(checkBars()));
+    }
 }

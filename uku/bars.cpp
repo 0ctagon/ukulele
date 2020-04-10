@@ -1,6 +1,7 @@
 #include "bars.h"
 #include <qsignalmapper.h>
 #include <iostream>
+#include <bitset>
 
 Bars::Bars(QObject *parent) : QObject(parent)
 {
@@ -49,6 +50,20 @@ Cases* Bars::getCase(int i)
 int Bars::getBarValue()
 {
     return (*barCase)[0]->getState() | ((*barCase)[1]->getState() << 1) | ((*barCase)[2]->getState() << 2) | ((*barCase)[3]->getState() << 3);
+}
+
+void Bars::setBarValue(int barValue)
+{
+    auto bitValue = std::bitset<4>(barValue);
+
+    if(bitValue[0]) {(*barCase)[0]->Check();}
+    else {(*barCase)[0]->unCheck();}
+    if(bitValue[1]) {(*barCase)[1]->Check();}
+    else {(*barCase)[1]->unCheck();}
+    if(bitValue[2]) {(*barCase)[2]->Check();}
+    else {(*barCase)[2]->unCheck();}
+    if(bitValue[3]) {(*barCase)[3]->Check();}
+    else {(*barCase)[3]->unCheck();}
 }
 
 void Bars::unCheck()

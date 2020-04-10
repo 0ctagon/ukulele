@@ -40,12 +40,15 @@ private:
     Strings* strings = new Strings();
     Chords* data = new Chords();
 
+    void resetSetChords();
+
 public slots:
     void saveChords();
 
     void displayChords();
     void eraseChords();
     void displayStrings();
+    void setBarsValue(int chordNumber);
 
     void clearAll();
 

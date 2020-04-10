@@ -3,7 +3,7 @@
 #include "bars.h"
 #include "chords.h"
 #include <iostream>
-
+#include <bitset>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

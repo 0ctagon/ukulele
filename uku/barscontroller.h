@@ -23,8 +23,9 @@ public:
     Bars* getBar(int i);
 
     int getLength();
-    QVector<std::string>* getChords();
 
+    QVector<std::string>* getChordsName();
+    int getChordsListSize();
 
 public slots:
     void checkBars();
@@ -33,6 +34,8 @@ public slots:
     void unCheck();
 
     void saveBars(std::string name);
+
+    void setBarsValue(std::string name, int i);
 
 signals:
     void barChanged();
