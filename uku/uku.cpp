@@ -102,7 +102,7 @@ void uku::setBarsValue(int chordNumber)
     if(chordName=="")
     {
         ui->selectChord->setMaximum(0);
-        ui->numberFound->setText("0 chord found");
+        ui->numberFound->setText("0 hand positions found");
         return;
     }
     barsController->setBarsValue(chordName, chordNumber);
@@ -112,7 +112,7 @@ void uku::setBarsValue(int chordNumber)
         ui->selectChord->setValue(maxValue);
     }
     ui->selectChord->setMaximum(maxValue);
-    ui->numberFound->setText(QString::number(maxValue)+" chords found");
+    ui->numberFound->setText(QString::number(maxValue)+" hand positions found");
 }
 
 void uku::clearAll()
