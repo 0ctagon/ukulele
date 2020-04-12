@@ -55,6 +55,7 @@ public slots:
 signals:
     void saveChordsSignal(std::string);
     void unCheck();
+    void chordFound();
 };
 
 #endif // UKU_H

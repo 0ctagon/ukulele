@@ -40,6 +40,7 @@ uku::uku(QWidget *parent) :
     strings->setStrings(barsController);
 
     connect(barsController,SIGNAL(barChanged()), strings, SLOT(setNotes()));
+    connect(this, SIGNAL(chordFound()), strings, SLOT(setNotes()));
     connect(strings,SIGNAL(notesSet()), this, SLOT(displayStrings()));
 
     connect(ui->selectChord,SIGNAL(valueChanged(int)), this, SLOT(setBarsValue(int)));
@@ -113,6 +114,7 @@ void uku::setBarsValue(int chordNumber)
     }
     ui->selectChord->setMaximum(maxValue);
     ui->numberFound->setText(QString::number(maxValue)+" hand positions found");
+    emit chordFound();
 }
 
 void uku::clearAll()
