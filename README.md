@@ -2,8 +2,6 @@
 
 Simulated ukulele finger placement
 
-To launch : lauch the uku.exe in run/
-
 Place fingers -> Gives chords
 Give 1 chord -> gives all hand placement
 

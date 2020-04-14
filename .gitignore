@@ -1,14 +1,15 @@
 # C++ objects and libs
 *.slo
 *.lo
-*.o
+#*.o
 *.a
 *.la
 *.lai
-*.so
-*.so.*
+#*.so
+#*.so.*
 *.dll
 *.dylib
+run*
 
 # Qt-es
 object_script.*.Release
@@ -16,20 +17,21 @@ object_script.*.Debug
 *_plugin_import.cpp
 /.qmake.cache
 /.qmake.stash
+.qmake.stash
 *.pro.user
 *.pro.user.*
 *.qbs.user
 *.qbs.user.*
 *.moc
-moc_*.cpp
-moc_*.h
+#moc_*.cpp
+#moc_*.h
 qrc_*.cpp
-ui_*.h
+#ui_*.h
 *.qmlc
 *.jsc
 Makefile*
 *build-*
-/build
+#/build
 *.qm
 *.prl
 
